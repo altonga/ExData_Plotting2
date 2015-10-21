@@ -1,12 +1,12 @@
 
-#NEI <- readRDS("summarySCC_PM25.rds")
-#SCC <- readRDS("Source_Classification_Code.rds")
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
 library(dplyr)
 NEI_tbl_df <- tbl_df(NEI)
 SCC_tbl_df <- tbl_df(SCC)
 head(NEI_tbl_df)
 NEI_by_year <- group_by(NEI_tbl_df, year)
-NEI_by_year_emissions <- summarize(NEI_by_year, total = sum(Emissions, na.rm = TRUE))
+NEI_by_year_emissions <- summarize(NEI_by_year, total = round(sum(Emissions, na.rm = TRUE), 3))
 png("plot1.png")
 plot(NEI_by_year_emissions$year, NEI_by_year_emissions$total/1000000, type="l", 
      xlab="Year", ylab=expression("Total Emissions, PM"[2.5]*"(10^6 Tons)"), xaxt="n", yaxt="n", col="blue", 
