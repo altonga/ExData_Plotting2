@@ -7,7 +7,7 @@ NEI_tbl_df <- tbl_df(NEI)
 NEI_tbl_df <- filter(NEI_tbl_df, fips == "24510")
 SCC_tbl_df <- tbl_df(SCC)
 head(SCC_tbl_df)
-SCC_Motor <- grep("vehicle", SCC_tbl_df$Short.Name, ignore.case = TRUE )
+SCC_Motor <- grep("motor", SCC_tbl_df$Short.Name, ignore.case = TRUE )
 SCC_Motor_Entries <- SCC_tbl_df[SCC_Motor, ]
 MotorSCC <- SCC_Motor_Entries$SCC
 UniqueMotorSCC <- unique(MotorSCC)
