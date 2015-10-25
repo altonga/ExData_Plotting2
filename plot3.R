@@ -1,3 +1,6 @@
+# Code for plot3.png
+
+# Point has seen an increase while the rest have seen a decrease from 1999-2008 in Baltimore City
 
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
@@ -19,6 +22,6 @@ png("plot3.png")
 g <- ggplot(data=NEI_by_type_emissions, aes(year, total, color=type)) + 
      geom_point() + 
      geom_line(aes(group = type)) +
-     labs(title = "Total Emissions per Year by Type", x ="Year", y = expression("Total Emissions, PM"[2.5]*"(Tons)")) 
+     labs(title = "Total Emissions by Type in Baltimore City", x ="Year", y = expression("Total Emissions, PM"[2.5]*"(Tons)")) 
 print(g)
 dev.off()

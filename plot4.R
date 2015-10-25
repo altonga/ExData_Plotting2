@@ -1,3 +1,9 @@
+# Code for plot4.png
+
+# Coal Combustion is identified by searching Short.Name for "Comb" followed by "Coal" ignoring case. 
+
+# Coal Combustion emissions have decreased across US from 1999-2008 but there was a slight increase from 2002 to 2005.
+
 
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
@@ -21,23 +27,12 @@ maxy <- ceiling(max(NEI_Comb_Coal_by_year_emissions$total))
 
 png("plot4.png")
 
-plot(NEI_Comb_Coal_by_year_emissions$year, NEI_Comb_Coal_by_year_emissions$total)  
-
-
-
 plot(NEI_Comb_Coal_by_year_emissions$year, NEI_Comb_Coal_by_year_emissions$total, type="l", 
      xlab="Year", ylab=expression("Total Emissions, PM"[2.5]*"(Tons)"), xaxt="n",  
      col="blue", 
-     xlim=c(1998, 2014), ylim =c(0, maxy), main="Total Emissions Every Year for Coal Combustion Sources")
+     xlim=c(1998, 2014), ylim =c(0, maxy), main="Total Emissions for Coal Combustion Sources")
 axis(1, at = seq(1999, 2011, by = 3), las = 2)
 points(NEI_Comb_Coal_by_year_emissions$year, NEI_Comb_Coal_by_year_emissions$total, pch = 4, col="green")
 text(NEI_Comb_Coal_by_year_emissions$year, NEI_Comb_Coal_by_year_emissions$total, NEI_Comb_Coal_by_year_emissions$total, cex=0.6, pos=4, col="red")
 
-
-
-
-#     geom_point() + 
-#     geom_line(aes(group = type)) +
-#     labs(title = "Total Emissions per Year by Type", x ="Year", y = expression("Total Emissions, PM"[2.5]*"(Tons)")) 
-#print(g)
 dev.off()

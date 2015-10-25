@@ -1,6 +1,15 @@
+# Code for plot5.png
 
-#NEI <- readRDS("summarySCC_PM25.rds")
-#SCC <- readRDS("Source_Classification_Code.rds")
+# Motor vehicles are identified by searching for "motor" in  Short.Name ignoring case
+
+# With different criteria a different plot would be obtained but it would a case of simple substiution of variable 
+# and search string in following code
+
+# Baltimore saw an increase in emissions from 1999 to 2002 and then a decrease by 2008. 
+# The emissions were lower in 2008 than 1999.
+
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
 library(dplyr)
 library(ggplot2)
 NEI_tbl_df <- tbl_df(NEI)
@@ -20,23 +29,11 @@ maxy <- ceiling(max(NEI_Motor_by_year_emissions$total))
 
 png("plot5.png")
 
-plot(NEI_Motor_by_year_emissions$year, NEI_Motor_by_year_emissions$total)  
-
-
-
 plot(NEI_Motor_by_year_emissions$year, NEI_Motor_by_year_emissions$total, type="l", 
      xlab="Year", ylab=expression("Total Emissions, PM"[2.5]*"(Tons)"), xaxt="n",  
      col="blue", 
-     xlim=c(1998, 2014), ylim =c(0, maxy), main="Total Emissions Every Year for Motor Vehicles in Baltimore City")
+     xlim=c(1998, 2014), ylim =c(0, maxy), main="Total Emissions for Motor Vehicles in Baltimore City")
 axis(1, at = seq(1999, 2011, by = 3), las = 2)
 points(NEI_Motor_by_year_emissions$year, NEI_Motor_by_year_emissions$total, pch = 4, col="green")
 text(NEI_Motor_by_year_emissions$year, NEI_Motor_by_year_emissions$total, NEI_Motor_by_year_emissions$total, cex=0.6, pos=4, col="red")
-
-
-
-
-#     geom_point() + 
-#     geom_line(aes(group = type)) +
-#     labs(title = "Total Emissions per Year by Type", x ="Year", y = expression("Total Emissions, PM"[2.5]*"(Tons)")) 
-#print(g)
 dev.off()
